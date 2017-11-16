@@ -1,7 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import InfoModal from './info-modal';
+import {InfoModal} from './info-modal';
+import { toggleInfoModal } from '../actions';
 
 describe('<InfoModal />', () => {
     it('Renders without crashing', () => {
@@ -9,11 +10,12 @@ describe('<InfoModal />', () => {
     });
 
     it('Fires the onClose callback when the close button is clicked', () => {
-        const callback = jest.fn();
-        const wrapper = shallow(<InfoModal onClose={callback} />);
-        wrapper.find('.close').simulate('click', {
+        const dispatch = jest.fn();
+        const wrapper = shallow(<InfoModal dispatch={dispatch} />);
+        wrapper.find('.close')
+        .simulate('click', {
             preventDefault() {}
         });
-        expect(callback).toHaveBeenCalled();
+        expect(dispatch).toHaveBeenCalledWith(toggleInfoModal());
     });
 });
