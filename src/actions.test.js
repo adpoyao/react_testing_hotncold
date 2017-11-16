@@ -4,6 +4,8 @@ describe('newGame', () => {
   it('Should return the newGame action', () => {
     const action = newGame();
     expect(action.type).toEqual(NEW_GAME);
+    expect(action.correctAnswer).toBeGreaterThanOrEqual(0);
+    expect(action.correctAnswer).toBeLessThanOrEqual(100);
   })
 })
 
