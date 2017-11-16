@@ -44,7 +44,7 @@ describe('reducer', () => {
   })
 
   it('Should save guesses in state.guesses array after makeGuess action', () => {
-    const state = {
+    const initialState = {
       guesses: [],
       feedback: 'Make your guess!',
       correctAnswer: 15,
@@ -54,11 +54,11 @@ describe('reducer', () => {
     const guess1 = 1;
     const guess2 = 2;
     const guess3 = 3
-    let action;
-    action = reducer(state, makeGuess(guess1));
-    action = reducer (action, makeGuess(guess2));
-    action = reducer (action, makeGuess(guess3));    
-    expect(action.guesses).toEqual([1,2,3]);
+    let state;
+    state = reducer(initialState, makeGuess(guess1));
+    state = reducer (state, makeGuess(guess2));
+    state = reducer (state, makeGuess(guess3));    
+    expect(state.guesses).toEqual([1,2,3]);
   })
 
 
